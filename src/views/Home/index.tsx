@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Fade } from 'react-reveal'
 import * as S from './styled'
 import { Buttom, Note } from '../../components'
 
@@ -18,16 +19,18 @@ const Home: React.FC = () => {
     }])
   return (
         <S.Container>
-            <S.Title>ToDo List</S.Title>
-            <S.ContainerParagraph>
-                <S.Paragraph>
-                    Bem-vindo(a) ao nosso sistema de gerenciamento de tarefas! 
-                    Sabemos o quão importante é ser produtivo e organizar suas atividades
-                    diárias de maneira eficiente. Para ajudá-lo(a) nessa jornada, criamos um
-                    recurso que permite a criação de uma nova lista de tarefas com um simples 
-                    clique no botão "Criar Novo ToDo List".
-                </S.Paragraph>
-            </S.ContainerParagraph>
+            <Fade top cascade>
+                <S.ContainerParagraph>
+                <S.Title>ToDo List</S.Title>
+                    <S.Paragraph>
+                        Bem-vindo(a) ao nosso sistema de gerenciamento de tarefas! 
+                        Sabemos o quão importante é ser produtivo e organizar suas atividades
+                        diárias de maneira eficiente. Para ajudá-lo(a) nessa jornada, criamos um
+                        recurso que permite a criação de uma nova lista de tarefas com um simples 
+                        clique no botão "Criar Novo ToDo List".
+                    </S.Paragraph>
+                </S.ContainerParagraph>
+            </Fade>
             <Buttom width='185px' height='40px'>Criar Novo ToDo List</Buttom>
             {todoLists.length === 0 ? (
                 <S.ContainerParagraph>

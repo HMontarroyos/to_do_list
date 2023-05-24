@@ -20,12 +20,17 @@ export const Title = styled.h1`
 export const Paragraph = styled.p`
     color: ${(props) => props.theme.colors.text};
     font-size: ${(props) => props.theme.fontSizes.medium};
-    font-family: ${(props) => props.theme.fonts.text}
+    font-family: ${(props) => props.theme.fonts.title};
 `
 
 export const ContainerParagraph = styled.div`
-    width: 800px;
-    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    margin: 0 auto; 
+    margin-bottom: 30px;
 `
 
 export const ContainerNote = styled.div`
