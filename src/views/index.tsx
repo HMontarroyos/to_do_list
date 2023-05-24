@@ -1,5 +1,6 @@
 import { lazy } from 'react'
 
 const Home = lazy(async () => await import('./Home'))
+const About = lazy(async () => await import('./About'))
 
-export { Home}
+export { Home, About}
