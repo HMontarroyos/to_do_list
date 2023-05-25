@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
@@ -35,8 +35,9 @@ export const ContainerParagraph = styled.div`
 
 export const ContainerNote = styled.div`
   width: 100%;
-  height: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
 `;
+
