@@ -10,6 +10,7 @@
     "@types/node": "^16.18.32",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
+    "@types/uuid": "^9.0.1",
     "axios": "^1.4.0",
     "polished": "^4.2.2",
     "react": "^18.2.0",
@@ -17,8 +18,11 @@
     "react-reveal": "^1.2.2",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.3",
     "styled-components": "^6.0.0-rc.1",
+    "sweetalert2": "^11.7.5",
     "typescript": "^4.9.5",
+    "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
