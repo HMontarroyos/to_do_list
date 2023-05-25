@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StickyContainer = styled.div`
-  max-width: 270px;
+  width: 200px;
   position: relative;
 `;
 
