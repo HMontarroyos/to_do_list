@@ -45,7 +45,7 @@ const Home: React.FC = () => {
       background: "#F2E9e6",
       iconColor: "#ff6161",
       showCancelButton: true,
-      confirmButtonColor: "#61a6ab",
+      confirmButtonColor: "#95de90",
       cancelButtonColor: "#ff6161",
       confirmButtonText: "OK, deletar toDo list",
     }).then((result) => {
@@ -117,13 +117,14 @@ const Home: React.FC = () => {
           <>
           <S.ContainerNote>
             {todoLists.map((todo) => (
-              <Note
-                key={todo.id}
-                onRemove={() => onRemove(todo.id)}
-                onEdit={() => onEdit(todo.id)}
-              >
-                {todo.name}
-              </Note>
+                <Note
+                  id={todo.id}
+                  key={todo.id}
+                  onRemove={() => onRemove(todo.id)}
+                  onEdit={() => onEdit(todo.id)}
+                >
+                  {todo.name}
+                </Note>
             ))}
           </S.ContainerNote>
           </>
