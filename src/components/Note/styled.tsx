@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StickyContainer = styled.div`
-  width: 200px;
+  width: 230px;
   position: relative;
 `;
 

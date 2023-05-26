@@ -1,8 +1,9 @@
-import { ChangeEvent, useState } from 'react';
-import { toast } from 'react-toastify';
-import * as S from './styled';
-import { createToDo, updateToDo } from '../../server/api';
-import { Buttom, Note } from '../../components';
+import { ChangeEvent, useState } from "react";
+import { toast } from "react-toastify";
+import * as S from "./styled";
+import { createToDo, updateToDo } from "../../server/api";
+import { Buttom, Note } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 interface ModalProps {
   value: string;
@@ -17,7 +18,7 @@ function Modal({ value, onClose, onCreate, idToDo }: ModalProps): JSX.Element {
   }
 
   const [newToDo, setNewToDo] = useState<toDo>({ name: value });
-
+  const navigate = useNavigate();
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setNewToDo((prevState) => ({
@@ -28,25 +29,24 @@ function Modal({ value, onClose, onCreate, idToDo }: ModalProps): JSX.Element {
 
   const createNewToDo = async (): Promise<void> => {
     if (idToDo) {
-      console.log("TEM ID", idToDo)
       try {
         updateToDo(idToDo, newToDo.name);
-        toast.success('toDo List Editado com sucesso!');
+        toast.success("toDo List Editado com sucesso!");
         onCreate();
         onClose();
       } catch (error) {
-        toast.error('Erro ao editar toDo List!');
+        toast.error("Erro ao editar toDo List!");
         console.error(error);
       }
     } else {
       try {
-        toast.success('toDo List Criado com sucesso!');
+        toast.success("toDo List Criado com sucesso!");
         const response = await createToDo(newToDo);
         onCreate();
-        onClose(); //TODO: Ao criar leva para a pagina criada
-        console.log(response);
+        onClose();
+        navigate(`/todo/${response.id}`);
       } catch (error) {
-        toast.error('Erro ao criar toDo List!');
+        toast.error("Erro ao criar toDo List!");
         console.error(error);
       }
     }
@@ -56,8 +56,21 @@ function Modal({ value, onClose, onCreate, idToDo }: ModalProps): JSX.Element {
     <S.ModalOverlay>
       <Note closeIcon onClose={onClose}>
         <S.ContainerInput>
-          <S.Input type="text" id="name" name="name" placeholder={"Digite o nome do toDo List"} value={newToDo.name} onChange={handleChange} required />
-          <Buttom width={"80px"} height={"40px"} onClick={createNewToDo} disabled={newToDo.name.length === 0 || newToDo.name === value}>
+          <S.Input
+            type="text"
+            id="name"
+            name="name"
+            placeholder={"Digite o nome do toDo List"}
+            value={newToDo.name}
+            onChange={handleChange}
+            required
+          />
+          <Buttom
+            width={"80px"}
+            height={"40px"}
+            onClick={createNewToDo}
+            disabled={newToDo.name.length === 0 || newToDo.name === value}
+          >
             Salvar
           </Buttom>
         </S.ContainerInput>
