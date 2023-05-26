@@ -15,6 +15,13 @@ interface toDo {
   id?: string;
   name: string;
   permalink?: string;
+  itens?: Item[];
+}
+
+interface Item {
+  id: string;
+  item: string;
+  order?: number;
 }
 
 export const createToDo = async (todo: toDo): Promise<any> => {
@@ -45,6 +52,12 @@ export const getToDos = async (): Promise<any> => {
   }
 };
 
+export const getToDoListById = (id: string): any | undefined => {
+  const todos = JSON.parse(localStorage.getItem("todos") || "[]");
+  const todoList = todos.find((todo: any) => todo.id === id);
+  return todoList;
+};
+
 export const deleteToDo = async (id: string): Promise<void> => {
   try {
     todos = todos.filter((todo) => todo.id !== id);
@@ -71,5 +84,124 @@ export const updateToDo = async (id: string, newName: string): Promise<any> => {
   } catch (error: any) {
     console.error(error);
     throw new Error("Error updating toDo", error);
+  }
+};
+
+export const addItemToTodo = async (
+  todoId: string,
+  newItem: string
+): Promise<any> => {
+  try {
+    const todosData = localStorage.getItem("todos");
+    const todos: toDo[] = todosData ? JSON.parse(todosData) : [];
+    const todoIndex = todos.findIndex((todo) => todo.id === todoId);
+
+    if (todoIndex !== -1) {
+      const todo = todos[todoIndex];
+
+      if (!todo.itens) {
+        todo.itens = [];
+      }
+
+      const newItemObj = {
+        id: generateUniqueId(),
+        item: newItem,
+        order: 0,
+      };
+
+      let maxOrder = 0;
+
+      if (todo.itens.length > 0) {
+        todo.itens.forEach((item: any) => {
+          if (item.order > maxOrder) {
+            maxOrder = item.order;
+          }
+        });
+      }
+
+      newItemObj.order = maxOrder + 1;
+      todo.itens.push(newItemObj);
+      localStorage.setItem("todos", JSON.stringify(todos));
+      return newItemObj;
+    } else {
+      throw new Error(`ToDo with id ${todoId} not found.`);
+    }
+  } catch (error: any) {
+    console.error(error);
+    throw new Error("Error adding item to ToDo", error);
+  }
+};
+
+export const editItemInTodo = async (
+  todoId: string,
+  itemId: string,
+  newName: string
+): Promise<any> => {
+  try {
+    const todosData = localStorage.getItem("todos");
+    const todos: toDo[] = todosData ? JSON.parse(todosData) : [];
+
+    const todoIndex = todos.findIndex((todo) => todo.id === todoId);
+
+    if (todoIndex !== -1) {
+      const todo = todos[todoIndex];
+
+      if (todo.itens) {
+        const itemIndex = todo.itens.findIndex((item) => item.id === itemId);
+
+        if (itemIndex !== -1) {
+          todo.itens[itemIndex].item = newName;
+          localStorage.setItem("todos", JSON.stringify(todos));
+          return todo.itens[itemIndex];
+        } else {
+          throw new Error(
+            `Item with id ${itemId} not found in ToDo ${todoId}.`
+          );
+        }
+      } else {
+        throw new Error(`ToDo with id ${todoId} does not have any items.`);
+      }
+    } else {
+      throw new Error(`ToDo with id ${todoId} not found.`);
+    }
+  } catch (error: any) {
+    console.error(error);
+    throw new Error("Error editing item in ToDo", error);
+  }
+};
+
+export const removeItemFromTodo = async (
+  todoId: string,
+  itemId: string
+): Promise<void> => {
+  try {
+    const todosData = localStorage.getItem("todos");
+    const todos: toDo[] = todosData ? JSON.parse(todosData) : [];
+
+    const todoIndex = todos.findIndex((todo) => todo.id === todoId);
+
+    if (todoIndex !== -1) {
+      const todo = todos[todoIndex];
+
+      if (todo.itens) {
+        const itemIndex = todo.itens.findIndex((item) => item.id === itemId);
+
+        if (itemIndex !== -1) {
+          todo.itens.splice(itemIndex, 1);
+          localStorage.setItem("todos", JSON.stringify(todos));
+        } else {
+          throw new Error(
+            `Item with id ${itemId} not found in ToDo ${todoId}.`
+          );
+        }
+      } else {
+        throw new Error(`ToDo with id ${todoId} does not have any items.`);
+      }
+    } else {
+      throw new Error(`ToDo with id ${todoId} not found.`);
+    }
+  } catch (error: any) {
+    console.error(error);
+    throw new Error("Error removing item from ToDo", error);
   }
 };
