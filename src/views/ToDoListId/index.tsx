@@ -12,7 +12,7 @@ import {
   editItemInTodo,
   removeItemFromTodo,
 } from "../../server/api";
-import { Buttom, TextLink } from "../../components";
+import { Buttom, TextLink, NotebookSheet } from "../../components";
 
 interface Item {
   id: number;
@@ -249,7 +249,7 @@ const ToDoListId: React.FC = () => {
             </div>
           </S.ContainerTable>
           {toDo?.itens && toDo.itens.length > 0 ? (
-            <>
+            <NotebookSheet>
               {toDo.itens.map((_item: any, idx: number) => (
                 <>
                   <S.ContainerInput /* taskChildren={toDo.itens[idx].checked} */
@@ -286,7 +286,7 @@ const ToDoListId: React.FC = () => {
                   </S.ContainerInput>
                 </>
               ))}
-            </>
+            </NotebookSheet>
           ) : (
             <S.Paragraph>
               Não existe itens atribuidos a este toDo, para criar uma nova
