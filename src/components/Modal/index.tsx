@@ -20,15 +20,16 @@ function Modal({ value, onClose, onCreate, idToDo }: ModalProps): JSX.Element {
   }
 
   const [newToDo, setNewToDo] = useState<toDo>({ name: value });
-  const [maxAllowedCharactersInput, setMaxAllowedCharactersInput] = useState(false);
+  const [maxAllowedCharactersInput, setMaxAllowedCharactersInput] =
+    useState(false);
   const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    if(value.length === MAX_CHARACTERS){
-      setMaxAllowedCharactersInput(true)
-    }else{
-      setMaxAllowedCharactersInput(false)
+    if (value.length === MAX_CHARACTERS) {
+      setMaxAllowedCharactersInput(true);
+    } else {
+      setMaxAllowedCharactersInput(false);
     }
     setNewToDo((prevState) => ({
       ...prevState,
@@ -76,8 +77,10 @@ function Modal({ value, onClose, onCreate, idToDo }: ModalProps): JSX.Element {
             required
           />
           {maxAllowedCharactersInput && (
-            <S.TextMaxCharacter>Limite máximo de caracteres excedido!</S.TextMaxCharacter>
-      )}
+            <S.TextMaxCharacter>
+              Limite máximo de caracteres excedido!
+            </S.TextMaxCharacter>
+          )}
           <Buttom
             width={"80px"}
             height={"40px"}

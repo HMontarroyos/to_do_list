@@ -8,7 +8,8 @@ export const Theme = {
         light: "#c1b398",
         confirm: "#61a6ab",
         remove: "#ff6161",
-        note: "#FDFDC9"
+        note: "#FDFDC9",
+        disabledText: "#a1a1ad"
 
     },
     fonts: {
