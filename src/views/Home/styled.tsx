@@ -21,6 +21,7 @@ export const Paragraph = styled.p`
     color: ${(props) => props.theme.colors.text};
     font-size: ${(props) => props.theme.fontSizes.medium};
     font-family: ${(props) => props.theme.fonts.title};
+    white-space: pre-wrap;
 `
 
 export const ContainerParagraph = styled.div`
@@ -31,6 +32,15 @@ export const ContainerParagraph = styled.div`
     width: 700px;
     margin: 0 auto; 
     margin-bottom: 30px;
+
+    @media (max-width: 820px) {
+        width: 500px;
+      }
+
+    @media (max-width: 500px) {
+        width: 300px;
+      }
+
 `
 
 export const ContainerNote = styled.div`
