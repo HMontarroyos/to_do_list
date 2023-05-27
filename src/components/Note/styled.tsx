@@ -70,3 +70,8 @@ export const ContainerIcon = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const TextContainer = styled.div`
+  word-wrap: break-word;
+  hyphens: auto;
+`;

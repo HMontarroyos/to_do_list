@@ -25,6 +25,14 @@ export const Paragraph = styled.p`
     margin-top: 30px;
 `
 
+export const TextToDo = styled.p`
+color: ${(props) => props.theme.colors.text};
+font-size: ${(props) => props.theme.fontSizes.small};
+white-space: pre-wrap;
+text-align: center;
+padding: 10px;
+`
+
 export const ContainerParagraph = styled.div`
     display: flex;
     flex-direction: column;

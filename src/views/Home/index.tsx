@@ -123,7 +123,7 @@ const Home: React.FC = () => {
                   onRemove={() => onRemove(todo.id)}
                   onEdit={() => onEdit(todo.id)}
                 >
-                  {todo.name}
+                  <S.TextToDo>{todo.name}</S.TextToDo>
                 </Note>
             ))}
           </S.ContainerNote>

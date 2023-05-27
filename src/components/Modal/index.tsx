@@ -12,15 +12,24 @@ interface ModalProps {
   idToDo?: string;
 }
 
+const MAX_CHARACTERS = 50;
+
 function Modal({ value, onClose, onCreate, idToDo }: ModalProps): JSX.Element {
   interface toDo {
     name: string;
   }
 
   const [newToDo, setNewToDo] = useState<toDo>({ name: value });
+  const [maxAllowedCharactersInput, setMaxAllowedCharactersInput] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    if(value.length === MAX_CHARACTERS){
+      setMaxAllowedCharactersInput(true)
+    }else{
+      setMaxAllowedCharactersInput(false)
+    }
     setNewToDo((prevState) => ({
       ...prevState,
       [name]: value,
@@ -63,8 +72,12 @@ function Modal({ value, onClose, onCreate, idToDo }: ModalProps): JSX.Element {
             placeholder={"Digite o nome do toDo List"}
             value={newToDo.name}
             onChange={handleChange}
+            maxLength={MAX_CHARACTERS}
             required
           />
+          {maxAllowedCharactersInput && (
+            <S.TextMaxCharacter>Limite máximo de caracteres excedido!</S.TextMaxCharacter>
+      )}
           <Buttom
             width={"80px"}
             height={"40px"}

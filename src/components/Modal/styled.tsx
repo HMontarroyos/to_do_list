@@ -32,3 +32,11 @@ export const ContainerInput = styled.div`
   align-items: center;
 
 `
+
+export const TextMaxCharacter = styled.p`
+  font-size: 13px;
+  color: ${(props) => props.theme.colors.remove};
+  font-family: ${(props) => props.theme.fonts.title};
+  padding-bottom: 10px;
+
+`
