@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const Menu = styled.div<Props>`
-  width: 100%;
+  width: 100vw;
   height: ${(props) => props.height};
   background-color: ${(props) => props.theme.colors.primary};
   position: relative;
