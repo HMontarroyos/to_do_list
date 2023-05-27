@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 import { Fade } from "react-reveal";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -12,11 +14,25 @@ interface todoList {
   name: string;
 }
 
-const Home: React.FC = () => {
+type HomeProps = {
+  modal?: boolean
+};
+
+const Home: React.FC<HomeProps> = ({ modal }) => {
+  const location = useLocation();
   const [todoLists, setTodoLists] = useState<todoList[]>([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean | undefined>(false);
   const [editToDo, setEditToDo] = useState("");
   const [editToDoName, setEditToDoName] = useState("");
+
+  useEffect(() => {
+    const queryParams = queryString.parse(location.search);
+    const value = queryParams.value === "true";
+    if(value || modal){
+      const hasModal = value || modal
+      setShowModal(hasModal);
+    }
+  }, [location.search]);
 
   const fetchToDos = async (): Promise<void> => {
     try {
@@ -47,6 +63,7 @@ const Home: React.FC = () => {
       showCancelButton: true,
       confirmButtonColor: "#95de90",
       cancelButtonColor: "#ff6161",
+      cancelButtonText: "Cancelar",
       confirmButtonText: "OK, deletar toDo list",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -115,8 +132,8 @@ const Home: React.FC = () => {
           </S.ContainerParagraph>
         ) : (
           <>
-          <S.ContainerNote>
-            {todoLists.map((todo) => (
+            <S.ContainerNote>
+              {todoLists.map((todo) => (
                 <Note
                   id={todo.id}
                   key={todo.id}
@@ -125,8 +142,8 @@ const Home: React.FC = () => {
                 >
                   <S.TextToDo>{todo.name}</S.TextToDo>
                 </Note>
-            ))}
-          </S.ContainerNote>
+              ))}
+            </S.ContainerNote>
           </>
         )}
       </S.Container>

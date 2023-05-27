@@ -12,6 +12,7 @@ const Routes: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/todo/:id" element={<ToDoListId/>} />
+        <Route path="*" element={<Home modal={true} />} />
       </Router>
     </Suspense>
     </BrowserRouter>

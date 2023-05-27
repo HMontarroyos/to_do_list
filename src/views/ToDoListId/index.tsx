@@ -13,6 +13,8 @@ import { Buttom, TextLink } from "../../components";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import queryString from 'query-string';
+
 
 interface Item {
   id: number;
@@ -35,14 +37,14 @@ const ToDoListId: React.FC = () => {
     try {
       const todos = await getToDos();
       setToDoLists(todos);
-      /* const hasId = toDoLists.some((toDo: any) => toDo.id === id); */
-      // console.log("HAS ID", hasId);
-      if (id /*  && hasId  */) {
+      const hasId = todos.some((toDo: any) => toDo.id === id);
+      if (id && hasId) {
         const toDoById = await getToDoListById(id);
         setToDo(toDoById);
-      } /*  else {
-        navigate('404');
-      } */
+      } else {
+        const queryParams = queryString.stringify({ value: true });
+        navigate(`/?${queryParams}`);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -79,6 +81,7 @@ const ToDoListId: React.FC = () => {
       showCancelButton: true,
       confirmButtonColor: "#95de90",
       cancelButtonColor: "#ff6161",
+      cancelButtonText: "Cancelar",
       confirmButtonText: "OK, deletar toDo list",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -106,6 +109,7 @@ const ToDoListId: React.FC = () => {
       showCancelButton: true,
       confirmButtonColor: "#95de90",
       cancelButtonColor: "#ff6161",
+      cancelButtonText: "Cancelar",
       confirmButtonText: "OK, criar nova tarefa",
     }).then(async (result) => {
       if (result.isConfirmed) {
@@ -137,6 +141,7 @@ const ToDoListId: React.FC = () => {
       showCancelButton: true,
       confirmButtonColor: "#95de90",
       cancelButtonColor: "#ff6161",
+      cancelButtonText: "Cancelar",
       confirmButtonText: "OK, editar e salvar nova tarefa",
     }).then(async (result) => {
       if (result.isConfirmed) {
@@ -163,6 +168,7 @@ const ToDoListId: React.FC = () => {
       showCancelButton: true,
       confirmButtonColor: "#95de90",
       cancelButtonColor: "#ff6161",
+      cancelButtonText: "Cancelar",
       confirmButtonText: "OK, deletar tarefa",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -178,68 +184,119 @@ const ToDoListId: React.FC = () => {
     });
   };
 
+  const handleTaskChange = async(e: React.ChangeEvent<HTMLInputElement>, taskId: number) => {
+    const task = toDo.itens[taskId]
+    if (toDo && toDo.itens && task) {
+      const updatedToDoTask = [...toDo.itens];
+      if (!updatedToDoTask[taskId].hasOwnProperty('checked')) {
+        updatedToDoTask[taskId].checked = false;
+      }
+      updatedToDoTask[taskId].checked = e.target.checked;
+      setToDo((prevToDo: any) => ({ ...prevToDo, itens: updatedToDoTask }) as any);
+      if(e.target.checked){
+
+        Swal.fire({
+          title: "Você marcou sua tarefa como finalizada,  deseja excluir ela ?",
+          text: " Caso não exclua ao sair da pagina terá que refazer o processo de checked manualmente",
+          icon: "question",
+          color: "#605951",
+          background: "#F2E9e6",
+          iconColor: "#61a6ab",
+          showCancelButton: true,
+          confirmButtonColor: "#95de90",
+          cancelButtonColor: "#ff6161",
+          cancelButtonText: "Cancelar",
+          confirmButtonText: "OK, desejo prosseguir e deletar a tarefa",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            try {
+              id && removeItemFromTodo(id, task.id);
+              fetchToDo();
+              toast.success("Tarefa deletada com sucesso!");
+            } catch (e) {
+              toast.error("Ocorreu um erro ao deletar tarefa!");
+              console.error(e);
+            }
+          }
+        });
+      }
+    } else {
+      return;
+    }
+  };
+  
+  
+  
+
+
   return (
     <>
-      <S.Container>
-        {toDo?.name && <S.Title>{toDo.name}</S.Title>}
-        <Buttom width="190px" height="40px" onClick={handleEmail}>
-          Compartilhar via-email
-        </Buttom>
-      </S.Container>
-      <S.ContainerTable>
-        <div>
-          <Buttom
-            colorWarning
-            width="190px"
-            height="40px"
-            onClick={deleteToDoList}
-          >
-            Deletar lista
-          </Buttom>
-          <Buttom width="190px" height="40px" onClick={createToDoList}>
-            Novo item
-          </Buttom>
-        </div>
-      </S.ContainerTable>
-      {toDo?.itens && toDo.itens.length > 0 ? (
+      {toDo && (
         <>
-          {toDo.itens.map((_item: any) => (
+          <S.Container>
+            {toDo?.name && <S.Title>{toDo.name}</S.Title>}
+            <Buttom width="190px" height="40px" onClick={handleEmail}>
+              Compartilhar via-email
+            </Buttom>
+          </S.Container>
+          <S.ContainerTable>
+            <div>
+              <Buttom
+                colorWarning
+                width="190px"
+                height="40px"
+                onClick={deleteToDoList}
+              >
+                Deletar lista
+              </Buttom>
+              <Buttom width="190px" height="40px" onClick={createToDoList}>
+                Novo item
+              </Buttom>
+            </div>
+          </S.ContainerTable>
+          {toDo?.itens && toDo.itens.length > 0 ? (
             <>
-              <S.ContainerInput>
-                <div>
-                  <S.Input
-                    type="checkbox"
-                    checked={true /* !!toDo.checked */}
-                    onChange={(e) => console.log(e)}
-                  />
-                  <S.Item>{_item.item}</S.Item>
-                </div>
-                <S.ContainerButtons>
-                  <TextLink
-                    color={"#61a6ab"}
-                    name={"Editar"}
-                    onClick={() => editTask(_item.id)}
-                  />
-                  <TextLink
-                    color={"#ff6161"}
-                    name={"Remover"}
-                    onClick={() => deleteTask(_item.id)}
-                  />
-                  <TextLink
-                    color={"#54a04d"}
-                    name={"Adicionar sub-item"}
-                    onClick={() => console.log("FALTA FAZER")}
-                  />
-                </S.ContainerButtons>
-              </S.ContainerInput>
+              {toDo.itens.map((_item: any, idx: number) => (
+                <>
+                  <S.ContainerInput /* taskChildren={toDo.itens[idx].checked} */>
+                    <div key={idx}>
+                      <S.Input
+                        type="checkbox"
+                        checked={toDo.itens[idx].checked}
+                        onChange={(e) => handleTaskChange(e, idx)}
+                      />
+                      <S.Item checked={toDo.itens[idx].checked}>{_item.item}</S.Item>
+                    </div>
+                    <S.ContainerButtons>
+                      <TextLink
+                        color={"#61a6ab"}
+                        name={"Editar"}
+                        onClick={() => editTask(_item.id)}
+                      />
+                      <TextLink
+                        color={"#ff6161"}
+                        name={"Remover"}
+                        onClick={() => deleteTask(_item.id)}
+                      />
+{/*                       {_item.item && (
+                      <TextLink
+                        color={"#54a04d"}
+                        name={"Adicionar sub-item"}
+                        onClick={() => console.log(taskChildren={toDo.itens[idx].checked)}
+                      />
+                      )} */}
+                    </S.ContainerButtons>
+                  </S.ContainerInput>
+                </>
+              ))}
             </>
-          ))}
+          ) : (
+            <S.Paragraph>
+              Não existe itens atribuidos a este toDo, para criar uma nova
+              tarefa clique no botão "Novo item"
+            </S.Paragraph>
+          )}
         </>
-      ) : (
-        <S.Paragraph>
-          Não existe itens atribuidos a este toDo, para criar uma nova tarefa
-          clique no botão "Novo item"
-        </S.Paragraph>
       )}
     </>
   );
