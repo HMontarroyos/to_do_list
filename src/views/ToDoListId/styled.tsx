@@ -40,6 +40,10 @@ export const ContainerTable = styled.div`
     justify-content: space-between;
     margin-bottom: 30px;
   }
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const ContainerButtons = styled.div`
@@ -84,3 +88,15 @@ export const Input = styled.input`
     text-decoration: line-through;
   }
 `;
+
+export const WrapperTextButton = styled.div`
+  overflow: hidden;
+  white-space: wrap;
+  padding: 5px;
+  p {
+    width: 100%;
+    text-align: center;
+  }
+
+  
+`

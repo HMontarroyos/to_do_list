@@ -21,6 +21,7 @@ export const Button = styled.button<Props>`
   font-size: ${(props) => props.theme.fontSizes.small};
   border-radius: 10px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  margin-left: 20px;
 
   &:hover {
     background-color: ${(props) =>

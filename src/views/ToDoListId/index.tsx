@@ -230,7 +230,9 @@ const ToDoListId: React.FC = () => {
           <S.Container>
             {toDo?.name && <S.Title>{toDo.name}</S.Title>}
             <Buttom width="190px" height="40px" onClick={handleEmail}>
-              Compartilhar via-email
+              <S.WrapperTextButton>
+                <p>Compartilhar via-email </p>
+              </S.WrapperTextButton>
             </Buttom>
           </S.Container>
           <S.ContainerTable>
@@ -241,10 +243,14 @@ const ToDoListId: React.FC = () => {
                 height="40px"
                 onClick={deleteToDoList}
               >
-                Deletar lista
+                <S.WrapperTextButton>
+                  <p>Deletar lista</p>
+                </S.WrapperTextButton>
               </Buttom>
               <Buttom width="190px" height="40px" onClick={createToDoList}>
-                Novo item
+                <S.WrapperTextButton>
+                  <p>Novo item</p>
+                </S.WrapperTextButton>
               </Buttom>
             </div>
           </S.ContainerTable>
