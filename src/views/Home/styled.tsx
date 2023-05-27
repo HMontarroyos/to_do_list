@@ -22,6 +22,7 @@ export const Paragraph = styled.p`
     font-size: ${(props) => props.theme.fontSizes.medium};
     font-family: ${(props) => props.theme.fonts.title};
     white-space: pre-wrap;
+    margin-top: 30px;
 `
 
 export const ContainerParagraph = styled.div`
