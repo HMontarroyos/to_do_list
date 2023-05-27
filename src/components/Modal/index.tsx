@@ -1,9 +1,9 @@
 import { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as S from "./styled";
 import { createToDo, updateToDo } from "../../server/api";
 import { Buttom, Note } from "../../components";
-import { useNavigate } from "react-router-dom";
 
 interface ModalProps {
   value: string;

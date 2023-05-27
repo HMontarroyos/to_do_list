@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { lighten } from 'polished';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { lighten } from "polished";
 
 interface Props {
   height: string;
@@ -51,12 +51,11 @@ export const ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   width: 100%;
   top: 50%;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
   z-index: 0;
-  
 `;
 
 export const Image = styled.img`

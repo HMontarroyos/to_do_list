@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from "styled-components";
 
 const animationLoading = keyframes`
   0% {
@@ -13,17 +13,17 @@ const animationLoading = keyframes`
     transform: translateZ(300px);
     opacity: 0;
   }
-`
+`;
 
 export const Container = styled.div`
-    animation: ${animationLoading} 5s ease-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-`
+  animation: ${animationLoading} 5s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
 
 export const Image = styled.img`
   width: 300px;
   height: 300px;
-`
+`;

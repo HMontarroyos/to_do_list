@@ -19,7 +19,6 @@ export const Container = styled.div`
     width: 300px;
   }
 
-
   h1 {
     color: ${(props) => props.theme.colors.text};
     font-size: ${(props) => props.theme.fontSizes.large};

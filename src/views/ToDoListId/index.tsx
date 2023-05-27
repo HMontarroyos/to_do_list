@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import queryString from "query-string";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 import * as S from "./styled";
 import {
   getToDos,
@@ -10,11 +13,6 @@ import {
   removeItemFromTodo,
 } from "../../server/api";
 import { Buttom, TextLink } from "../../components";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import queryString from 'query-string';
-
 
 interface Item {
   id: number;
@@ -22,16 +20,11 @@ interface Item {
   order: number;
 }
 
-type ItemList = (
-  | Item
-  | { id: number; name: string; itens: Item[]; order: number }
-)[];
-
 const ToDoListId: React.FC = () => {
+  const navigate = useNavigate();
   const [toDoLists, setToDoLists] = useState([]);
   const [toDo, setToDo] = useState<any>();
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
 
   const fetchToDo = async (): Promise<void> => {
     try {
@@ -184,19 +177,24 @@ const ToDoListId: React.FC = () => {
     });
   };
 
-  const handleTaskChange = async(e: React.ChangeEvent<HTMLInputElement>, taskId: number) => {
-    const task = toDo.itens[taskId]
+  const handleTaskChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    taskId: number
+  ) => {
+    const task = toDo.itens[taskId];
     if (toDo && toDo.itens && task) {
       const updatedToDoTask = [...toDo.itens];
-      if (!updatedToDoTask[taskId].hasOwnProperty('checked')) {
+      if (!updatedToDoTask[taskId].hasOwnProperty("checked")) {
         updatedToDoTask[taskId].checked = false;
       }
       updatedToDoTask[taskId].checked = e.target.checked;
-      setToDo((prevToDo: any) => ({ ...prevToDo, itens: updatedToDoTask }) as any);
-      if(e.target.checked){
-
+      setToDo(
+        (prevToDo: any) => ({ ...prevToDo, itens: updatedToDoTask } as any)
+      );
+      if (e.target.checked) {
         Swal.fire({
-          title: "Você marcou sua tarefa como finalizada,  deseja excluir ela ?",
+          title:
+            "Você marcou sua tarefa como finalizada,  deseja excluir ela ?",
           text: " Caso não exclua ao sair da pagina terá que refazer o processo de checked manualmente",
           icon: "question",
           color: "#605951",
@@ -224,10 +222,6 @@ const ToDoListId: React.FC = () => {
       return;
     }
   };
-  
-  
-  
-
 
   return (
     <>
@@ -258,14 +252,17 @@ const ToDoListId: React.FC = () => {
             <>
               {toDo.itens.map((_item: any, idx: number) => (
                 <>
-                  <S.ContainerInput /* taskChildren={toDo.itens[idx].checked} */>
+                  <S.ContainerInput /* taskChildren={toDo.itens[idx].checked} */
+                  >
                     <div key={idx}>
                       <S.Input
                         type="checkbox"
                         checked={toDo.itens[idx].checked}
                         onChange={(e) => handleTaskChange(e, idx)}
                       />
-                      <S.Item checked={toDo.itens[idx].checked}>{_item.item}</S.Item>
+                      <S.Item checked={toDo.itens[idx].checked}>
+                        {_item.item}
+                      </S.Item>
                     </div>
                     <S.ContainerButtons>
                       <TextLink
@@ -278,7 +275,7 @@ const ToDoListId: React.FC = () => {
                         name={"Remover"}
                         onClick={() => deleteTask(_item.id)}
                       />
-{/*                       {_item.item && (
+                      {/*                       {_item.item && (
                       <TextLink
                         color={"#54a04d"}
                         name={"Adicionar sub-item"}

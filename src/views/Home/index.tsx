@@ -15,7 +15,7 @@ interface todoList {
 }
 
 type HomeProps = {
-  modal?: boolean
+  modal?: boolean;
 };
 
 const Home: React.FC<HomeProps> = ({ modal }) => {
@@ -28,8 +28,8 @@ const Home: React.FC<HomeProps> = ({ modal }) => {
   useEffect(() => {
     const queryParams = queryString.parse(location.search);
     const value = queryParams.value === "true";
-    if(value || modal){
-      const hasModal = value || modal
+    if (value || modal) {
+      const hasModal = value || modal;
       setShowModal(hasModal);
     }
   }, [location.search]);

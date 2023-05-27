@@ -1,9 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 import { edit, remove, close } from "../../assets/icons";
-import { useNavigate } from "react-router-dom";
-
-
 
 interface NoteProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
@@ -32,7 +30,6 @@ function Note({
     event.stopPropagation();
   };
 
-
   return (
     <>
       <S.StickyContainer onClick={navigateToDoListById}>
@@ -50,9 +47,7 @@ function Note({
               </defs>
             </svg>
             <S.StickyContent>
-              <S.TextContainer>
-              {children}
-                </S.TextContainer>
+              <S.TextContainer>{children}</S.TextContainer>
               <S.ContainerIcon>
                 {closeIcon ? (
                   <S.Icon src={close} onClick={onClose} />
