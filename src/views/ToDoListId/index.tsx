@@ -97,7 +97,7 @@ const ToDoListId: React.FC = () => {
       input: "text",
       inputAttributes: {
         autocapitalize: "off",
-        maxlength: "50",
+        maxlength: "40",
       },
       background: "#F2E9e6",
       showCancelButton: true,
@@ -129,7 +129,7 @@ const ToDoListId: React.FC = () => {
       inputValue: nameTask,
       inputAttributes: {
         autocapitalize: "off",
-        maxlength: "50",
+        maxlength: "40",
       },
       background: "#F2E9e6",
       showCancelButton: true,
