@@ -97,7 +97,7 @@ const ToDoListId: React.FC = () => {
       input: "text",
       inputAttributes: {
         autocapitalize: "off",
-        maxlength: "40",
+        maxlength: "50",
       },
       background: "#F2E9e6",
       showCancelButton: true,
@@ -105,6 +105,13 @@ const ToDoListId: React.FC = () => {
       cancelButtonColor: "#ff6161",
       cancelButtonText: "Cancelar",
       confirmButtonText: "OK, criar nova tarefa",
+      preConfirm: (value) => {
+        if (value.length > 50) {
+          Swal.showValidationMessage(`Tamanho permitido atingido`);
+          return Promise.reject("Tamanho permitido atingido");
+        }
+        return value;
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -129,7 +136,7 @@ const ToDoListId: React.FC = () => {
       inputValue: nameTask,
       inputAttributes: {
         autocapitalize: "off",
-        maxlength: "40",
+        maxlength: "50",
       },
       background: "#F2E9e6",
       showCancelButton: true,
