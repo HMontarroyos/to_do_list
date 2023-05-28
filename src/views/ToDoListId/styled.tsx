@@ -44,7 +44,6 @@ export const ContainerTable = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 30px;
   }
 
   @media (max-width: 768px) {
@@ -102,5 +101,13 @@ export const WrapperTextButton = styled.div`
   p {
     width: 100%;
     text-align: center;
+
+    @media (max-width: 400px) {
+      font-size: 12px;
+    }
+
+    @media (max-width: 500px) and (min-width: 401px) {
+      font-size: 14px;
+    }
   }
 `;
