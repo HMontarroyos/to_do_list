@@ -149,20 +149,15 @@ Abrir [http://localhost:3000](http://localhost:3000) vizualizar no Navegador.
 
 
 [React]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://pt-br.reactjs.org/
-
+[React-url]: https://pt-br.react.dev/
 [Typescript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
 [Typescript-url]: https://www.typescriptlang.org/
-
 [Styled_Components]: https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white
 [Styled_Components-url]: https://styled-components.com/
-
 [Polished]: https://img.shields.io/badge/Polished-107C10?style=for-the-badge
 [Polished-url]: https://polished.js.org/
-
 [React_Reveal]: https://img.shields.io/badge/React%20Reveal-593D88?style=for-the-badge
 [React_Reveal-url]: https://www.react-reveal.com/
-
 [React_Toastify]: https://img.shields.io/badge/React%20Toastify-092E20?style=for-the-badge
 [React_Toastify-url]: https://fkhadra.github.io/react-toastify/introduction
 
