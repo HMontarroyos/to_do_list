@@ -14,12 +14,6 @@ import {
 } from "../../server/api";
 import { Buttom, TextLink, NotebookSheet } from "../../components";
 
-interface Item {
-  id: number;
-  item: string;
-  order: number;
-}
-
 const ToDoListId: React.FC = () => {
   const navigate = useNavigate();
   const [toDoLists, setToDoLists] = useState([]);
@@ -105,13 +99,6 @@ const ToDoListId: React.FC = () => {
       cancelButtonColor: "#ff6161",
       cancelButtonText: "Cancelar",
       confirmButtonText: "OK, criar nova tarefa",
-      preConfirm: (value) => {
-        if (value.length > 50) {
-          Swal.showValidationMessage(`Tamanho permitido atingido`);
-          return Promise.reject("Tamanho permitido atingido");
-        }
-        return value;
-      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {

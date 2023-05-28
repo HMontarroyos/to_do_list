@@ -19,10 +19,8 @@ const About: React.FC = () => {
             </p>
             <p>
               Além disso, nosso sistema permite que você edite e gerencie suas
-              tarefas, adicionando sua lista de itens e caso deseje também pode
-              estar criando sub-itens relacionado aquela determinado tarefa. E
-              se alguma tarefa não for mais relevante, você pode excluí-la sem
-              problemas.
+              tarefas. E se alguma tarefa não for mais relevante, você pode
+              excluí-la sem problemas.
             </p>
             <p>
               Então, não espere mais! começe logo a criar sua primeira lista de

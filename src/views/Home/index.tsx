@@ -111,6 +111,10 @@ const Home: React.FC<HomeProps> = ({ modal }) => {
               criamos um recurso que permite a criação de uma nova lista de
               tarefas com um simples clique no botão "Criar Novo ToDo List".
             </S.Paragraph>
+            <S.Paragraph>
+              Caso tenha necessidade também pode editar o titulo desse seu toDo
+              e também excluir ele caso não seja mais útil.
+            </S.Paragraph>
           </S.ContainerParagraph>
         </Fade>
         <Buttom
