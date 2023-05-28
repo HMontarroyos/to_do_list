@@ -97,6 +97,7 @@ const ToDoListId: React.FC = () => {
       input: "text",
       inputAttributes: {
         autocapitalize: "off",
+        maxlength: "50",
       },
       background: "#F2E9e6",
       showCancelButton: true,
@@ -118,17 +119,17 @@ const ToDoListId: React.FC = () => {
     });
   };
 
-  const editTask = (idTask: string) => {
-    //TODO: Vir com o nome
-    //TODO: Disabled de salvar
+  const editTask = (idTask: string, nameTask: string) => {
     Swal.fire({
       icon: "info",
       iconColor: "#61a6ab",
       text: "Digite o novo nome da tarefa para ser editado",
       color: "#605951",
       input: "text",
+      inputValue: nameTask,
       inputAttributes: {
         autocapitalize: "off",
+        maxlength: "50",
       },
       background: "#F2E9e6",
       showCancelButton: true,
@@ -278,7 +279,7 @@ const ToDoListId: React.FC = () => {
                       <TextLink
                         color={"#61a6ab"}
                         name={"Editar"}
-                        onClick={() => editTask(_item.id)}
+                        onClick={() => editTask(_item.id, _item.item)}
                       />
                       <TextLink
                         color={"#ff6161"}
