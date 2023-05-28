@@ -16,6 +16,12 @@ export const Container = styled.div`
   align-items: center;
 `;
 
+export const ContainerTitle = styled.div`
+  width: 50%;
+  word-wrap: break-word;
+  hyphens: auto;
+`;
+
 export const Title = styled.h1`
   color: ${(props) => props.theme.colors.text};
   font-size: ${(props) => props.theme.fontSizes.large};
@@ -97,6 +103,4 @@ export const WrapperTextButton = styled.div`
     width: 100%;
     text-align: center;
   }
-
-  
-`
+`;

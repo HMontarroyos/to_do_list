@@ -228,7 +228,11 @@ const ToDoListId: React.FC = () => {
       {toDo && (
         <>
           <S.Container>
-            {toDo?.name && <S.Title>{toDo.name}</S.Title>}
+            {toDo?.name && (
+              <S.ContainerTitle>
+                <S.Title>{toDo.name}</S.Title>
+              </S.ContainerTitle>
+            )}
             <Buttom width="190px" height="40px" onClick={handleEmail}>
               <S.WrapperTextButton>
                 <p>Compartilhar via-email </p>
