@@ -136,14 +136,14 @@ Abrir [http://localhost:3000](http://localhost:3000) vizualizar no Navegador.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/HMontarroyos/ToDo_List.svg?style=for-the-badge
-[contributors-url]: https://github.com/HMontarroyos/ToDo_List/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/HMontarroyos/ToDo_List.svg?style=for-the-badge
-[forks-url]: https://github.com/HMontarroyos/ToDo_List/fork
-[stars-shield]: https://img.shields.io/github/stars/HMontarroyos/ToDo_List.svg?style=for-the-badge
-[stars-url]: https://github.com/HMontarroyos/ToDo_List/stargazers
-[issues-shield]: https://img.shields.io/github/issues/HMontarroyos/ToDo_List.svg?style=for-the-badge
-[issues-url]: https://github.com/HMontarroyos/ToDo_List/issues
+[contributors-shield]: https://img.shields.io/github/contributors/HMontarroyos/to_do_list.svg?style=for-the-badge
+[contributors-url]: https://github.com/HMontarroyos/to_do_list/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/HMontarroyos/to_do_list.svg?style=for-the-badge
+[forks-url]: https://github.com/HMontarroyos/to_do_list/fork
+[stars-shield]: https://img.shields.io/github/stars/HMontarroyos/to_do_list.svg?style=for-the-badge
+[stars-url]: https://github.com/HMontarroyos/to_do_list/stargazers
+[issues-shield]: https://img.shields.io/github/issues/HMontarroyos/to_do_list.svg?style=for-the-badge
+[issues-url]: https://github.com/HMontarroyos/to_do_list/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/hebertmontarroyos-developer/
 
