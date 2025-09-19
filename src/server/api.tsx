@@ -1,12 +1,8 @@
-import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const generateUniqueId = () => {
   return uuidv4();
 };
-
-const baseUrl = "http://api.vibbraneo.com/todo/";
-const api = axios.create({ baseURL: baseUrl });
 
 const todosData = localStorage.getItem("todos");
 let todos: toDo[] = todosData ? JSON.parse(todosData) : [];
